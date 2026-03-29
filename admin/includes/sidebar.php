@@ -28,6 +28,8 @@
       <span class="nav-icon">📅</span> Jadwal Kunjungan</a>
     <a href="komitmen.php" class="sidebar-nav-item <?= ($activePage??'')==='komitmen' ? 'active':'' ?>">
       <span class="nav-icon">📜</span> Komitmen</a>
+    <a href="faq.php" class="sidebar-nav-item <?= ($activePage??'')==='faq' ? 'active':'' ?>">
+      <span class="nav-icon">❓</span> FAQ Chatbot</a>
     <span class="sidebar-nav-label">Data Instansi</span>
     <a href="pejabat.php" class="sidebar-nav-item <?= ($activePage??'')==='pejabat' ? 'active':'' ?>">
       <span class="nav-icon">👤</span> Profil Pejabat</a>

@@ -202,6 +202,114 @@ if (!defined('BASE_URL')) {
     .search-result-judul { font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
     .search-result-date { font-size: 0.8rem; color: #888; }
     .search-no-result { padding: 2rem; text-align: center; color: #888; }
+
+    /* ── CHATBOT WIDGET ── */
+    .chatbot-widget {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9998;
+    }
+    .chatbot-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f, #112240);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .chatbot-toggle:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.4);
+    }
+    .chatbot-toggle svg { width: 28px; height: 28px; fill: #fff; }
+    .chatbot-toggle .close-icon { display: none; }
+    .chatbot-toggle.open .chat-icon { display: none; }
+    .chatbot-toggle.open .close-icon { display: block; }
+    
+    .chatbot-modal {
+      position: absolute;
+      bottom: 76px;
+      right: 0;
+      width: 380px;
+      max-width: calc(100vw - 48px);
+      max-height: 520px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.25);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chatbot-modal.open { display: flex; }
+    .chatbot-header {
+      background: linear-gradient(135deg, #1e3a5f, #112240);
+      color: #fff;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .chatbot-header svg { width: 28px; height: 28px; fill: #fff; }
+    .chatbot-header h3 { margin: 0; font-size: 1rem; font-weight: 600; }
+    .chatbot-header p { margin: 0; font-size: 0.75rem; opacity: 0.85; }
+    
+    .chatbot-search {
+      padding: 0.75rem;
+      border-bottom: 1px solid #eee;
+    }
+    .chatbot-search input {
+      width: 100%;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .chatbot-search input:focus { border-color: #1e3a5f; }
+    
+    .chatbot-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.5rem;
+    }
+    .chatbot-empty {
+      padding: 2rem;
+      text-align: center;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    .chatbot-item {
+      padding: 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-bottom: 0.25rem;
+    }
+    .chatbot-item:hover { background: #f5f7fa; }
+    .chatbot-item.pertanyaan {
+      font-weight: 600;
+      color: #1e3a5f;
+      font-size: 0.9rem;
+    }
+    .chatbot-item.jawaban {
+      color: #555;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .chatbot-item.jawaban p { margin: 0; }
+    
+    @media (max-width: 480px) {
+      .chatbot-widget { bottom: 16px; right: 16px; }
+      .chatbot-toggle { width: 54px; height: 54px; }
+      .chatbot-modal { width: calc(100vw - 32px); bottom: 70px; }
+    }
   </style>
 </head>
 <body>
@@ -439,3 +547,102 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </div>
+
+<!-- Chatbot Widget -->
+<div class="chatbot-widget">
+  <div class="chatbot-modal" id="chatbotModal">
+    <div class="chatbot-header">
+      <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+      <div>
+        <h3>FAQ Rutan</h3>
+        <p>Pertanyaan yang sering diajukan</p>
+      </div>
+    </div>
+    <div class="chatbot-search">
+      <input type="text" id="chatbotSearch" placeholder="Cari pertanyaan..." autocomplete="off">
+    </div>
+    <div class="chatbot-body" id="chatbotBody">
+      <div class="chatbot-empty">Memuat FAQ...</div>
+    </div>
+  </div>
+  <button class="chatbot-toggle" id="chatbotToggle" aria-label="Buka FAQ">
+    <svg class="chat-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+    <svg class="close-icon" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  </button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const chatbotToggle = document.getElementById('chatbotToggle');
+  const chatbotModal = document.getElementById('chatbotModal');
+  const chatbotSearch = document.getElementById('chatbotSearch');
+  const chatbotBody = document.getElementById('chatbotBody');
+  
+  let faqData = [];
+  
+  // Toggle chatbot
+  chatbotToggle.addEventListener('click', function() {
+    chatbotModal.classList.toggle('open');
+    chatbotToggle.classList.toggle('open');
+    if (chatbotModal.classList.contains('open') && faqData.length === 0) {
+      loadFaq();
+    }
+  });
+  
+  // Load FAQ
+  function loadFaq() {
+    chatbotBody.innerHTML = '<div class="chatbot-empty">Memuat FAQ...</div>';
+    fetch('<?= BASE_URL ?>/backend/api/faq.php?action=all')
+      .then(r => r.json())
+      .then(res => {
+        if (res.status === 'success' && res.data) {
+          faqData = res.data;
+          renderFaq(faqData);
+        } else {
+          chatbotBody.innerHTML = '<div class="chatbot-empty">Gagal memuat FAQ</div>';
+        }
+      })
+      .catch(() => {
+        chatbotBody.innerHTML = '<div class="chatbot-empty">Gagal memuat FAQ</div>';
+      });
+  }
+  
+  // Render FAQ
+  function renderFaq(data) {
+    if (data.length === 0) {
+      chatbotBody.innerHTML = '<div class="chatbot-empty">Belum ada FAQ</div>';
+      return;
+    }
+    chatbotBody.innerHTML = data.map(faq => 
+      '<div class="chatbot-item pertanyaan">' + faq.pertanyaan + '</div>' +
+      '<div class="chatbot-item jawaban"><p>' + faq.jawaban + '</p></div>'
+    ).join('');
+  }
+  
+  // Search FAQ
+  let searchTimeout;
+  chatbotSearch.addEventListener('input', function(e) {
+    clearTimeout(searchTimeout);
+    const q = e.target.value.toLowerCase().trim();
+    searchTimeout = setTimeout(function() {
+      if (q === '') {
+        renderFaq(faqData);
+      } else {
+        const filtered = faqData.filter(f => 
+          f.pertanyaan.toLowerCase().includes(q) || 
+          f.jawaban.toLowerCase().includes(q)
+        );
+        renderFaq(filtered);
+      }
+    }, 200);
+  });
+  
+  // Close on escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && chatbotModal.classList.contains('open')) {
+      chatbotModal.classList.remove('open');
+      chatbotToggle.classList.remove('open');
+    }
+  });
+});
+</script>
