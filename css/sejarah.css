@@ -1,0 +1,335 @@
+/*
+  FILE: css/sejarah.css
+  CSS khusus untuk halaman sejarah dan halaman-halaman dalam (inner pages).
+  style.css tetap dipakai untuk navbar, footer, dan komponen umum.
+  File ini hanya menambah style yang spesifik untuk layout halaman dalam.
+*/
+
+
+/* ── PAGE HEADER: Banner judul di atas halaman ── */
+.page-header {
+  background: var(--navy);
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+  /* Pola diagonal tipis di background */
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(201,168,76,0.03) 0,
+    rgba(201,168,76,0.03) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 30px 30px;
+}
+
+.page-header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.3), transparent);
+}
+
+.page-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Breadcrumb: Beranda › Tentang › Sejarah */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1.25rem;
+}
+
+.breadcrumb a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+  color: var(--gold-light);
+}
+
+.breadcrumb-active {
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+/* Judul halaman */
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.page-title span {
+  color: var(--gold);
+}
+
+.page-subtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+  font-style: italic;
+}
+
+
+/* ── LAYOUT UTAMA: Sidebar + Konten ── */
+.page-main {
+  background: var(--cream);
+  padding: 3rem 2rem;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  /*
+    Sidebar: lebar tetap 260px
+    Konten: sisa ruang (1fr = 1 bagian dari sisa)
+  */
+  grid-template-columns: 260px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+
+/* ── SIDEBAR ── */
+.page-sidebar {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  /* Menempel di atas saat di-scroll */
+  position: sticky;
+  top: 90px;
+}
+
+.sidebar-title {
+  background: var(--navy);
+  color: var(--gold-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.25rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0.5rem 0;
+}
+
+.sidebar-menu li a {
+  display: block;
+  padding: 0.7rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.sidebar-menu li a:hover {
+  background: var(--gold-pale);
+  color: var(--navy);
+  border-left-color: var(--gold);
+}
+
+/* Link aktif di sidebar */
+.sidebar-menu li a.active {
+  background: var(--gold-pale);
+  color: var(--navy);
+  border-left-color: var(--gold);
+  font-weight: 600;
+}
+
+
+/* ── KONTEN ARTIKEL ── */
+.page-content {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+/* Gambar utama artikel */
+.content-img-box {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  position: relative;
+  background: var(--navy);
+}
+
+.content-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.content-img-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.8);
+  font-size: 0.78rem;
+  padding: 0.5rem 1rem;
+  font-style: italic;
+}
+
+/* Body teks artikel */
+.content-body {
+  padding: 2.5rem;
+}
+
+.content-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--gold-pale);
+}
+
+/* Heading pertama tidak perlu margin atas */
+.content-heading:first-child {
+  margin-top: 0;
+}
+
+.content-body p {
+  font-size: 1rem;
+  color: var(--text-mid);
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+}
+
+.content-body em {
+  color: var(--navy);
+  font-style: italic;
+  font-weight: 600;
+}
+
+
+/* ── TIMELINE ── */
+.timeline {
+  position: relative;
+  margin: 1.5rem 0 2rem;
+  padding-left: 2rem;
+}
+
+/* Garis vertikal di kiri */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;        /* posisi garis */
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), var(--border));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Titik bulat di garis timeline */
+.timeline-dot {
+  position: absolute;
+  left: -26px;      /* keluar ke kiri, tepat di atas garis */
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--gold);
+  z-index: 1;
+}
+
+/* Titik aktif (saat ini) */
+.timeline-dot-active {
+  background: var(--gold);
+}
+
+.timeline-content {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.timeline-content:hover {
+  border-color: var(--gold);
+}
+
+/* Label tahun/periode */
+.timeline-year {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+
+.timeline-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-desc {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin: 0;
+}
+
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  /* Sidebar pindah ke atas konten */
+  .page-container {
+    grid-template-columns: 1fr;
+  }
+
+  .page-sidebar {
+    position: static; /* Tidak sticky di mobile */
+  }
+}
+
+@media (max-width: 640px) {
+  .page-main {
+    padding: 2rem 1rem;
+  }
+
+  .content-body {
+    padding: 1.5rem;
+  }
+
+  .page-header {
+    padding: 2.5rem 1rem;
+  }
+}

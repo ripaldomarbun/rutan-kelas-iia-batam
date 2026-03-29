@@ -1,0 +1,249 @@
+/*
+  FILE: css/struktur.css
+  Bagan struktur dengan foto bulat di setiap jabatan
+*/
+
+.org-chart {
+  margin: 2rem 0 1rem;
+  overflow-x: auto;
+  min-width: 620px;
+}
+
+/* ═══════════════════════════════════════
+   LEVEL 1: Kepala + Tata Usaha
+   ═══════════════════════════════════════ */
+.org-level-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.org-spacer { flex: 1; }
+
+/* Kotak Kepala Rutan — layout horizontal (foto + teks) */
+.org-box-top {
+  background: var(--gold);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 260px;
+  box-shadow: 0 4px 16px rgba(201,168,76,0.4);
+}
+
+/* Avatar besar Kepala Rutan */
+.org-avatar {
+  width: 60px; height: 60px; min-width: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--navy);
+  background: var(--navy);
+}
+
+.org-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+.org-avatar-fallback {
+  display: none;
+  width: 100%; height: 100%;
+  background: var(--navy);
+  align-items: center; justify-content: center;
+  font-weight: 700; color: var(--white); font-size: 1rem;
+}
+
+.org-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem; font-weight: 700;
+  color: var(--navy); line-height: 1.3;
+}
+
+.org-jabatan {
+  font-size: 0.73rem; color: var(--navy);
+  opacity: 0.75; margin-top: 2px;
+}
+
+/* ── Panah → Tata Usaha ── */
+.org-arrow-right {
+  flex: 1;
+  display: flex; align-items: center;
+  justify-content: flex-start;
+}
+
+.org-arrow-line {
+  width: 50px; height: 2px;
+  background: var(--text-dark);
+  flex-shrink: 0;
+}
+
+.org-arrow-head {
+  font-size: 1rem; color: var(--text-dark);
+  line-height: 1; margin-right: 6px;
+  flex-shrink: 0;
+}
+
+/* Kotak Tata Usaha — layout vertikal (foto di atas, teks di bawah) */
+.org-box-side {
+  background: var(--gold);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  text-align: center;
+  min-width: 140px;
+  box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ── Foto bulat vertikal (untuk Tata Usaha & Kasubsi) ── */
+.org-foto-circle {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--navy);
+  background: var(--navy);
+  flex-shrink: 0;
+}
+
+.org-foto-circle img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+/* Fallback inisial jika foto tidak ada */
+.org-foto-fallback {
+  display: none; /* ditampilkan via onerror di HTML */
+  width: 100%; height: 100%;
+  background: var(--navy-light);
+  align-items: center; justify-content: center;
+  font-weight: 700; color: var(--white);
+  font-size: 1rem;
+}
+
+/* Label jabatan (huruf kapital) */
+.org-box-label {
+  font-size: 0.78rem; font-weight: 700;
+  color: var(--navy); letter-spacing: 0.06em;
+  line-height: 1.3;
+}
+
+/* Nama pejabat (huruf biasa) */
+.org-box-nama {
+  font-size: 0.72rem; color: var(--navy);
+  opacity: 0.7; font-style: italic;
+}
+
+/* ═══════════════════════════════════════
+   KONEKTOR
+   ═══════════════════════════════════════ */
+.org-connector-center {
+  display: flex;
+  justify-content: center;
+}
+
+.org-v-line {
+  width: 2px; height: 36px;
+  background: var(--text-dark);
+}
+
+.org-h-line {
+  width: 78%; height: 2px;
+  background: var(--text-dark);
+}
+
+/* ═══════════════════════════════════════
+   LEVEL 2: 4 Kasubsi
+   ═══════════════════════════════════════ */
+.org-level-bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.org-col-bottom {
+  display: flex; flex-direction: column;
+  align-items: center; flex: 1;
+}
+
+.org-v-line-short {
+  width: 2px; height: 22px;
+  background: var(--text-dark);
+}
+
+.org-arrow-down {
+  font-size: 1rem; color: var(--text-dark);
+  line-height: 1; margin-bottom: 2px;
+}
+
+/* Kotak Kasubsi — layout vertikal sama seperti Tata Usaha */
+.org-box-mid {
+  background: var(--gold);
+  border-radius: 10px;
+  padding: 1rem 0.75rem;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(201,168,76,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.org-box-mid:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(201,168,76,0.45);
+}
+
+/* Teks di dalam kotak Kasubsi pakai class yang sama */
+.org-box-mid .org-box-label {
+  font-size: 0.76rem;
+}
+
+/* ── Keterangan & Catatan ── */
+.org-keterangan {
+  margin-top: 2rem; padding: 1rem 1.5rem;
+  background: var(--cream); border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.org-ket-title {
+  font-size: 0.78rem; font-weight: 700;
+  color: var(--text-mid); text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 0.75rem;
+}
+
+.org-ket-list { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+.org-ket-item {
+  display: flex; align-items: center;
+  gap: 8px; font-size: 0.83rem; color: var(--text-mid);
+}
+
+.org-ket-dot { width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0; }
+.org-ket-dot-top    { background: var(--gold); }
+.org-ket-dot-mid    { background: var(--gold); opacity: 0.7; }
+.org-ket-dot-bottom { background: var(--gold); opacity: 0.4; }
+
+.org-note {
+  display: flex; align-items: flex-start;
+  gap: 10px; margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 10px; font-size: 0.83rem;
+  color: var(--text-mid); line-height: 1.6;
+}
+
+.org-note svg { flex-shrink: 0; color: var(--gold); margin-top: 1px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .org-chart { min-width: 560px; }
+  .org-h-line { width: 86%; }
+  .org-foto-circle { width: 52px; height: 52px; }
+}

@@ -1,0 +1,22 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore OpenCode files
+.opencode/
+.claude/
+
+# Ignore config with secrets (create config.php.example instead)
+backend/config/config.php
+
+# Ignore logs
+*.log
+
+# Ignore vendor if using composer
+# vendor/

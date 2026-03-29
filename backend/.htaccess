@@ -1,0 +1,14 @@
+# FILE: backend/.htaccess
+# Blokir akses langsung ke folder backend kecuali folder api/
+
+# Larang akses ke config dan includes
+<FilesMatch "\.(php)$">
+  <If "%{REQUEST_URI} =~ m|/backend/config/|">
+    Require all denied
+  </If>
+  <If "%{REQUEST_URI} =~ m|/backend/includes/|">
+    Require all denied
+  </If>
+</FilesMatch>
+
+Options -Indexes

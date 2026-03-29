@@ -1,0 +1,95 @@
+# ========================================
+# URL REWRITING - Clean URLs tanpa .php
+# ========================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /web-rutan/
+
+  # Jika file nyata, skip rewriting
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Halaman-halaman publik
+  RewriteRule ^sejarah$ pages/sejarah.php [L]
+  RewriteRule ^visi-misi$ pages/visi-misi.php [L]
+  RewriteRule ^struktur$ pages/struktur.php [L]
+  RewriteRule ^tupoksi$ pages/tupoksi.php [L]
+  RewriteRule ^pejabat$ pages/pejabat.php [L]
+  RewriteRule ^kunjungan$ pages/kunjungan.php [L]
+  RewriteRule ^survey$ pages/survey.php [L]
+  RewriteRule ^komitmen$ pages/komitmen.php [L]
+  RewriteRule ^berita$ pages/berita.php [L]
+  RewriteRule ^detail-berita(/.*)?$ pages/detail-berita.php [L,QSA]
+
+# Jika minta .php, redirect ke URL clean
+  RewriteCond %{THE_REQUEST} \s/pages/(\w+)\.php [NC]
+  RewriteRule ^pages/(\w+)\.php$ /$1 [R=301,L]
+
+  # Redirect detail-berita.php?slug=xxx ke /detail-berita?slug=xxx
+  RewriteCond %{THE_REQUEST} \s/pages/detail-berita\.php\?slug= [NC]
+  RewriteRule ^pages/detail-berita\.php$ /detail-berita [R=301,L]
+  
+  # Jika file tidak ditemukan, cek apakah itu halaman yang我们知道
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ pages/404.php [L]
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Images - cache 1 tahun
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # CSS/JS - cache 1 bulan
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+
+  # HTML - tidak di-cache
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # PDF - cache 1 minggu
+  ExpiresByType application/pdf "access plus 1 week"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  # Enable GZIP compression
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+  
+  # Kompresi untuk browser lama
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+  
+  # Don't compress images
+  SetEnvIfNoCase RequestUri \.(jpg|jpeg|png|gif|webp|svg)$ no-gzip dont-vary
+</IfModule>
+
+# ETags
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+FileETag None
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Prevent access to sensitive files
+<FilesMatch "\.(env|sql|md|gitignore|lock)$">
+  Require all denied
+</FilesMatch>

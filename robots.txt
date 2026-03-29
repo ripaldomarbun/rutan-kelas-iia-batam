@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Directories to disallow
+Disallow: /admin/
+Disallow: /backend/
+Disallow: /vendor/
+Disallow: /.opencode/
+
+# Files to disallow
+Disallow: /admin/*.php$
+Disallow: /backend/config/
+Disallow: /backend/includes/
+Disallow: /backend/api/auth.php
+
+# Sitemap
+Sitemap: https://rutanbatam.id/sitemap.xml
+Sitemap: http://localhost/web-rutan/sitemap.xml
+
+# Crawl-delay (optional)
+Crawl-delay: 1

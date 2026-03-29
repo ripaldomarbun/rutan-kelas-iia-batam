@@ -1,0 +1,202 @@
+/*
+  FILE: css/tupoksi.css
+  CSS untuk halaman Tugas Pokok & Fungsi
+  Fitur utama: Tab navigasi per unit kerja
+*/
+
+/* Intro paragraf */
+.tupoksi-intro {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 1.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--cream);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+}
+
+/* ── TAB NAVIGASI ── */
+.tupoksi-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  color: var(--text-mid);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+.tab-btn:hover {
+  border-color: var(--gold);
+  color: var(--navy);
+  background: var(--gold-pale);
+}
+
+/* Tab aktif */
+.tab-btn.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--gold-light);
+}
+
+/* ── PANEL KONTEN ── */
+/* Semua panel tersembunyi by default */
+.tupoksi-panel {
+  display: none;
+  animation: fadeInPanel 0.3s ease;
+}
+
+/* Hanya panel aktif yang tampil */
+.tupoksi-panel.active {
+  display: block;
+}
+
+@keyframes fadeInPanel {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Header panel: icon + nama unit */
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--gold-pale);
+}
+
+.panel-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.panel-unit {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+}
+
+.panel-singkatan {
+  font-size: 0.78rem;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ── BAGIAN TUGAS & FUNGSI ── */
+.panel-tugas,
+.panel-fungsi {
+  margin-bottom: 1.75rem;
+}
+
+/* Label "Tugas Pokok" / "Fungsi" */
+.panel-section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Garis dekorasi setelah label */
+.panel-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.panel-tugas p {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.85;
+  padding: 1rem 1.25rem;
+  background: var(--cream);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin: 0;
+}
+
+/* ── DAFTAR FUNGSI ── */
+.fungsi-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fungsi-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+.fungsi-list li:hover {
+  border-color: var(--gold);
+  background: var(--gold-pale);
+  transform: translateX(4px);
+}
+
+/* Nomor urut fungsi */
+.fungsi-num {
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .tupoksi-tabs {
+    gap: 0.4rem;
+  }
+
+  .tab-btn {
+    font-size: 0.76rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .panel-unit {
+    font-size: 1.1rem;
+  }
+}

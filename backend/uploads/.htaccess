@@ -1,0 +1,9 @@
+# FILE: backend/uploads/.htaccess
+# PENTING: Cegah file PHP dieksekusi di dalam folder uploads
+# (keamanan: mencegah upload webshell)
+
+<FilesMatch "\.php$">
+  Require all denied
+</FilesMatch>
+
+Options -Indexes

@@ -1,0 +1,60 @@
+<?php
+require_once __DIR__ . '/backend/config/config.php';
+require_once __DIR__ . '/backend/config/database.php';
+
+$baseUrl = BASE_URL;
+$db = getDB();
+
+header('Content-Type: application/xml');
+echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+// Static pages
+$staticPages = [
+    '' => '1.0',
+    'index.php' => '1.0',
+    'berita' => '0.9',
+    'detail-berita' => '0.8',
+    'sejarah' => '0.8',
+    'visi-misi' => '0.8',
+    'struktur' => '0.8',
+    'tupoksi' => '0.8',
+    'pejabat' => '0.8',
+    'kunjungan' => '0.9',
+    'survey' => '0.8',
+    'komitmen' => '0.8',
+];
+
+foreach ($staticPages as $page => $priority) {
+    $url = rtrim($baseUrl, '/') . '/' . $page;
+    echo '  <url>' . "\n";
+    echo '    <loc>' . htmlspecialchars($url) . '</loc>' . "\n";
+    echo '    <changefreq>weekly</changefreq>' . "\n";
+    echo '    <priority>' . $priority . '</priority>' . "\n";
+    echo '  </url>' . "\n";
+}
+
+// Dynamic news from database
+try {
+    $stmt = $db->prepare("SELECT slug, tanggal, updated_at FROM berita WHERE status = 'publish' ORDER BY tanggal DESC LIMIT 100");
+    $stmt->execute();
+    $berita = $stmt->fetchAll();
+    
+    foreach ($berita as $b) {
+        $url = rtrim($baseUrl, '/') . '/detail-berita?slug=' . urlencode($b['slug']);
+        $lastmod = $b['updated_at'] && $b['updated_at'] !== '0000-00-00 00:00:00' 
+            ? date('c', strtotime($b['updated_at'])) 
+            : date('c', strtotime($b['tanggal']));
+        
+        echo '  <url>' . "\n";
+        echo '    <loc>' . htmlspecialchars($url) . '</loc>' . "\n";
+        echo '    <lastmod>' . $lastmod . '</lastmod>' . "\n";
+        echo '    <changefreq>weekly</changefreq>' . "\n";
+        echo '    <priority>0.7</priority>' . "\n";
+        echo '  </url>' . "\n";
+    }
+} catch (PDOException $e) {
+    // If DB not available, skip news
+}
+
+echo '</urlset>';

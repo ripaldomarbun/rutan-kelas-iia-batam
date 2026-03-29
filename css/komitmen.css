@@ -1,0 +1,461 @@
+/*
+  FILE: css/komitmen.css
+  CSS untuk halaman Komitmen Integritas
+*/
+
+.komitmen-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── INTRO ── */
+.komitmen-intro {
+  background: var(--white);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 12px 12px 0;
+  padding: 1.25rem 1.75rem;
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.85;
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.komitmen-intro strong { color: var(--navy); }
+
+/* ── SECTION UMUM ── */
+.komitmen-section {
+  background: var(--white);
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 2rem;
+}
+
+.komitmen-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--gold-pale);
+}
+
+.komitmen-section-icon { font-size: 1.5rem; }
+
+.komitmen-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0;
+}
+
+/* ── GALLERY GAMBAR MAKLUMAT ── */
+.maklumat-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.maklumat-item {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--cream);
+}
+
+.maklumat-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.maklumat-item:hover img {
+  transform: scale(1.02);
+}
+
+/* Placeholder jika gambar belum ada */
+.maklumat-placeholder {
+  display: none; /* tampil via onerror */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  min-height: 280px;
+  background: var(--cream);
+  border-radius: 12px;
+}
+
+.placeholder-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+.placeholder-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+
+.maklumat-placeholder p {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.maklumat-placeholder code {
+  background: rgba(0,0,0,0.06);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  color: var(--navy);
+}
+
+/* ── 16 STANDAR PELAYANAN ── */
+.standar-desc {
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.standar-desc strong { color: var(--navy); }
+
+.standar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.standar-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem 1rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.25s;
+}
+
+.standar-card:hover {
+  border-color: var(--gold);
+  background: var(--gold-pale);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(201,168,76,0.15);
+}
+
+.standar-num {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: var(--gold);
+  opacity: 0.7;
+  font-family: 'Playfair Display', serif;
+}
+
+.standar-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.standar-nama {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+/* ── ZONA INTEGRITAS ── */
+.zona-section {
+  background: var(--navy) !important;
+  border: none !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+.zona-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0;
+}
+
+.zona-text {
+  padding: 2.5rem;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(201,168,76,0.03) 0,
+    rgba(201,168,76,0.03) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 24px 24px;
+}
+
+.zona-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.zona-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--white);
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.zona-text p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.zona-text strong { color: var(--gold-light); }
+
+.zona-badges {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.zona-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.zona-badge-icon { font-size: 1.5rem; }
+
+.zona-badge-title {
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.zona-badge-sub {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 2px;
+}
+
+/* Kolom kanan: CTA pengaduan */
+.zona-cta {
+  background: rgba(0,0,0,0.2);
+  border-left: 1px solid rgba(201,168,76,0.2);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 240px;
+  gap: 0.75rem;
+}
+
+.zona-cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.zona-cta p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.btn-pengaduan {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25d366;
+  color: var(--white);
+  padding: 0.7rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-pengaduan:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37,211,102,0.35);
+}
+
+.btn-email-pengaduan {
+  display: block;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.78rem;
+  text-decoration: none;
+  text-align: center;
+  transition: color 0.2s;
+  width: 100%;
+}
+
+.btn-email-pengaduan:hover { color: var(--gold-light); }
+
+/* ── ZOOM HINT: label "klik untuk perbesar" ── */
+.maklumat-item {
+  position: relative;  /* biar zoom-hint bisa absolute */
+  cursor: pointer;
+}
+
+.zoom-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.55);
+  color: var(--white);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  opacity: 0;                      /* tersembunyi default */
+  transition: opacity 0.2s;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Tampil saat hover */
+.maklumat-item:hover .zoom-hint {
+  opacity: 1;
+}
+
+/* Efek scale saat hover */
+.maklumat-item:hover img {
+  transform: scale(1.02);
+}
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  /* Fullscreen gelap, tersembunyi by default */
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+
+  /* Animasi masuk */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+/* Saat class "active" ditambah via JS */
+.lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Kotak putih di tengah yang menampung gambar */
+.lightbox-inner {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+
+  /* Animasi scale saat muncul */
+  transform: scale(0.92);
+  transition: transform 0.25s ease;
+}
+
+.lightbox.active .lightbox-inner {
+  transform: scale(1);
+}
+
+/* Gambar di dalam lightbox */
+.lightbox-inner img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  display: block;
+}
+
+/* Caption teks di bawah gambar */
+.lightbox-caption {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.82rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Tombol tutup × di pojok kanan atas */
+.lightbox-close {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--navy);
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.lightbox-close:hover {
+  background: var(--gold);
+  transform: scale(1.1);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .standar-grid { grid-template-columns: repeat(3, 1fr); }
+  .maklumat-gallery { grid-template-columns: 1fr; }
+  .zona-content { grid-template-columns: 1fr; }
+  .zona-cta {
+    border-left: none;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    min-width: unset;
+  }
+}
+
+@media (max-width: 600px) {
+  .komitmen-container { padding: 2rem 1rem; }
+  .standar-grid { grid-template-columns: repeat(2, 1fr); }
+  .zona-badges { flex-direction: column; }
+}

@@ -1,0 +1,369 @@
+/*
+  FILE: css/survey.css
+  CSS untuk halaman Survey Kepuasan Masyarakat
+*/
+
+.survey-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── INTRO ── */
+.survey-intro {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 12px 12px 0;
+  padding: 1.25rem 1.5rem;
+}
+
+.survey-intro-icon { font-size: 2rem; flex-shrink: 0; }
+
+.survey-intro-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+
+.survey-intro p {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ── FILTER TAHUN ── */
+.survey-filter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+.filter-tabs { display: flex; gap: 0.5rem; }
+
+.filter-btn {
+  padding: 0.45rem 1.25rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  color: var(--text-mid);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+.filter-btn:hover {
+  border-color: var(--gold);
+  color: var(--navy);
+}
+
+.filter-btn.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--gold-light);
+}
+
+/* ── PANEL PER TAHUN ── */
+.survey-year-panel { display: none; }
+.survey-year-panel.active {
+  display: block;
+  animation: fadeInPanel 0.3s ease;
+}
+
+@keyframes fadeInPanel {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RINGKASAN TAHUNAN ── */
+.survey-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: var(--navy);
+  border-radius: 14px 14px 0 0;
+  padding: 1.5rem 2rem;
+  flex-wrap: wrap;
+}
+
+.summary-item {
+  text-align: center;
+  flex: 1;
+  min-width: 100px;
+}
+
+.summary-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.summary-val-baik { color: var(--gold); }
+
+.summary-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.summary-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,0.15);
+  flex-shrink: 0;
+}
+
+/* ── TABEL ── */
+.survey-table-wrap {
+  overflow-x: auto;
+  border-radius: 0 0 14px 14px;
+  border: 1px solid var(--border);
+  border-top: none;
+}
+
+.survey-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  background: var(--white);
+}
+
+.survey-table thead tr {
+  background: var(--gold-pale);
+}
+
+.survey-table th {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--gold);
+}
+
+.survey-table td {
+  padding: 0.85rem 1rem;
+  color: var(--text-mid);
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.survey-table tbody tr:last-child td { border-bottom: none; }
+
+.survey-table tbody tr:hover td {
+  background: rgba(201,168,76,0.04);
+}
+
+/* Baris belum tersedia */
+.tr-empty td { opacity: 0.45; }
+
+.td-center { text-align: center; }
+
+.td-periode {
+  font-weight: 600;
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.td-belum {
+  font-style: italic;
+  color: var(--text-light) !important;
+  font-size: 0.8rem;
+}
+
+/* Progress bar nilai SKM */
+.td-nilai {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 130px;
+}
+
+.nilai-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.nilai-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--gold), var(--navy));
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+.td-nilai span {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Badge mutu A/B/C/D */
+.mutu-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 0.85rem;
+}
+
+.mutu-a { background: #d4edda; color: #155724; }
+.mutu-b { background: rgba(201,168,76,0.2); color: #7a5c10; }
+.mutu-c { background: #fff3cd; color: #856404; }
+.mutu-d { background: #f8d7da; color: #721c24; }
+
+/* Badge kinerja */
+.kinerja-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.kinerja-baik        { background: rgba(201,168,76,0.15); color: #7a5c10; }
+.kinerja-sangat-baik { background: #d4edda; color: #155724; }
+.kinerja-kurang      { background: #fff3cd; color: #856404; }
+
+/* Tombol unduh PDF */
+.btn-unduh {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.4rem 0.85rem;
+  background: var(--navy);
+  color: var(--gold-light);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-unduh:hover {
+  background: var(--gold);
+  color: var(--navy);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(201,168,76,0.3);
+}
+
+/* Placeholder belum ada PDF */
+.btn-belum {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  font-size: 0.72rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* ── KETERANGAN NILAI SKM ── */
+.survey-keterangan {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+}
+
+.ket-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1.1rem;
+}
+
+.ket-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ket-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--cream);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.ket-badge {
+  width: 32px; height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.ket-range {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.ket-kinerja {
+  font-size: 0.73rem;
+  color: var(--text-light);
+  margin-top: 1px;
+}
+
+.ket-sumber {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .survey-container { padding: 2rem 1rem; }
+  .ket-grid { grid-template-columns: repeat(2, 1fr); }
+  .summary-divider { display: none; }
+  .survey-summary { gap: 1rem; }
+}
+
+@media (max-width: 500px) {
+  .ket-grid { grid-template-columns: 1fr 1fr; }
+}
