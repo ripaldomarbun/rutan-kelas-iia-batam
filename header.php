@@ -18,6 +18,7 @@ if (!defined('BASE_URL')) {
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title><?= $pageTitle ?? 'Rutan Kelas IIA Batam' ?></title>
+  <link rel="icon" type="image/png" href="<?= $cssBase ?? '' ?>images/logo.png"/>
   <meta name="description" content="Rutan Kelas IIA Batam - Lembaga Pemasyarakat Menteri Imigrasi dan Pemasyarakatan Republik Indonesia. Informasi layanan kunjungan, berita terkini, dan perkembangan kegiatan Rutan Kelas IIA Batam."/>
   <meta name="keywords" content="rutan batam, rumah tahanan batam, lapas batam, pemasyarakatan,imigrasi dan pemasyarakatan,visitasi narapidana,kunjungan penjara,kementerian imigrasi kepulauan riau"/>
   <meta name="author" content="Rutan Kelas IIA Batam"/>
