@@ -16,7 +16,7 @@ if (!isset($cssBase) || $cssBase === '') {
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title><?= $pageTitle ?? 'Rutan Kelas IIA Batam' ?></title>
-  <link rel="icon" type="image/png" href="<?= $cssBase ?? '../' ?>../images/logo.png"/>
+  <link rel="icon" type="image/png" href="../images/logo.png"/>
   <link rel="stylesheet" href="<?= $cssBase ?? '../' ?>css/style.css"/>
   <?php if (!empty($extraCss)): foreach ($extraCss as $css): ?>
   <link rel="stylesheet" href="<?= $cssBase ?? '../' ?>css/<?= $css ?>"/>
