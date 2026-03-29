@@ -29,7 +29,7 @@ $slides = $db->query("SELECT * FROM slider WHERE aktif=1 ORDER BY urutan ASC")->
 $activePage='slider';
 ?>
 <!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Slider – Admin Rutan</title><link rel="stylesheet" href="css/admin.css"/>
+<title>Slider – Admin Rutan</title><link rel="icon" type="image/png" href="../images/logo.png"/><link rel="stylesheet" href="css/admin.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet"/></head>
 <body>
 <script>sessionStorage.setItem('csrf_token', '<?= getCsrfToken() ?>');</script>
