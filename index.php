@@ -8,6 +8,9 @@ $db = getDB();
 // ── Slider dari DB ──────────────────────────────────────
 $sliders = $db->query("SELECT * FROM slider WHERE aktif = 1 ORDER BY urutan ASC")->fetchAll();
 
+// ── Kontak info ─────────────────────────────────────────
+$kontak = getKontak();
+
 // ── 3 Berita terbaru untuk section beranda ──────────────
 $beritaTerbaru = $db->query(
     "SELECT id, judul, slug, ringkasan, gambar, kategori, tanggal
@@ -281,8 +284,8 @@ $bcSchema = [
               </svg>
             </div>
             <div>
-              <div class="kontak-label">Alamat</div>
-              <div class="kontak-value">Jl. Raya Trans Barelang, Batam<br />Kepulauan Riau, Indonesia</div>
+              <div class="kontak-label"><?= htmlspecialchars($kontak['alamat']['label'] ?? 'Alamat') ?></div>
+              <div class="kontak-value"><?= $kontak['alamat']['nilai'] ?? 'Jl. Raya Trans Barelang, Batam' ?></div>
             </div>
           </div>
           <div class="kontak-item">
@@ -293,8 +296,8 @@ $bcSchema = [
               </svg>
             </div>
             <div>
-              <div class="kontak-label">Telepon</div>
-              <div class="kontak-value">+62 778 393 497</div>
+              <div class="kontak-label"><?= htmlspecialchars($kontak['telepon']['label'] ?? 'Telepon') ?></div>
+              <div class="kontak-value"><?= htmlspecialchars($kontak['telepon']['nilai'] ?? '') ?></div>
             </div>
           </div>
           <div class="kontak-item">
@@ -305,8 +308,8 @@ $bcSchema = [
               </svg>
             </div>
             <div>
-              <div class="kontak-label">Email</div>
-              <div class="kontak-value">humasrutanbatam@gmail.com</div>
+              <div class="kontak-label"><?= htmlspecialchars($kontak['email']['label'] ?? 'Email') ?></div>
+              <div class="kontak-value"><?= htmlspecialchars($kontak['email']['nilai'] ?? '') ?></div>
             </div>
           </div>
           <div class="kontak-item">
@@ -317,9 +320,8 @@ $bcSchema = [
               </svg>
             </div>
             <div>
-              <div class="kontak-label">Jam Operasional</div>
-              <div class="kontak-value">Senin – Jumat: 08.00 – 16.00 WIB<br />Kunjungan: Sesuai jadwal yang berlaku
-              </div>
+              <div class="kontak-label"><?= htmlspecialchars($kontak['jam_operasional']['label'] ?? 'Jam Operasional') ?></div>
+              <div class="kontak-value"><?= $kontak['jam_operasional']['nilai'] ?? '' ?></div>
             </div>
           </div>
         </div>

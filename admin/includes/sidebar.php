@@ -30,6 +30,8 @@
       <span class="nav-icon">📜</span> Komitmen</a>
     <a href="faq.php" class="sidebar-nav-item <?= ($activePage??'')==='faq' ? 'active':'' ?>">
       <span class="nav-icon">❓</span> FAQ Chatbot</a>
+    <a href="kontak.php" class="sidebar-nav-item <?= ($activePage??'')==='kontak' ? 'active':'' ?>">
+      <span class="nav-icon">📞</span> Informasi Kontak</a>
     <span class="sidebar-nav-label">Data Instansi</span>
     <a href="pejabat.php" class="sidebar-nav-item <?= ($activePage??'')==='pejabat' ? 'active':'' ?>">
       <span class="nav-icon">👤</span> Profil Pejabat</a>

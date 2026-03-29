@@ -14,6 +14,12 @@ if (!isset($cssBase) || $cssBase === '') {
 if (!defined('BASE_URL')) {
     require_once __DIR__ . '/../config/config.php';
 }
+
+// Get kontak info
+if (!isset($kontak)) {
+    require_once __DIR__ . '/../includes/helpers.php';
+    $kontak = getKontak();
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -99,8 +105,8 @@ if (!defined('BASE_URL')) {
   <div class="topbar-inner">
     <span>Kementerian Imigrasi dan Pemasyarakatan Republik Indonesia</span>
     <div class="topbar-links">
-      <a href="mailto:humasrutanbatam@gmail.com">humasrutanbatam@gmail.com</a>
-      <a href="tel:+62778393497">+62 778 393 497</a>
+      <a href="mailto:<?= htmlspecialchars($kontak['email']['nilai'] ?? '') ?>"><?= htmlspecialchars($kontak['email']['nilai'] ?? '') ?></a>
+      <a href="tel:<?= preg_replace('/[^0-9+]/', '', $kontak['telepon']['nilai'] ?? '') ?>"><?= htmlspecialchars($kontak['telepon']['nilai'] ?? '') ?></a>
     </div>
   </div>
 </div>

@@ -59,6 +59,21 @@ function requireLogin(bool $apiMode = false): void {
 }
 
 /**
+ * Ambil data kontak dari database
+ */
+function getKontak(): array {
+    $db = getDB();
+    $stmt = $db->prepare("SELECT kode, label, nilai, icon FROM kontak_info WHERE aktif = 1 ORDER BY urutan ASC");
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $result = [];
+    foreach ($rows as $row) {
+        $result[$row['kode']] = $row;
+    }
+    return $result;
+}
+
+/**
  * Buat token CSRF dan simpan di session
  */
 function getCsrfToken(): string {

@@ -12,6 +12,12 @@ if (!defined('BASE_URL')) {
     require_once __DIR__ . '/../config/config.php';
 }
 $baseUrl = defined('BASE_URL') ? BASE_URL : '';
+
+// Get kontak info if not already set
+if (!isset($kontak)) {
+    require_once __DIR__ . '/../includes/helpers.php';
+    $kontak = getKontak();
+}
 ?>
 <footer>
   <div class="footer-main">
@@ -63,15 +69,15 @@ $baseUrl = defined('BASE_URL') ? BASE_URL : '';
       <div class="footer-contact-items">
         <div class="footer-contact-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Jl. Raya Trans Barelang, Batam, Kepulauan Riau</span>
+          <span><?= strip_tags($kontak['alamat']['nilai'] ?? 'Jl. Raya Trans Barelang, Batam') ?></span>
         </div>
         <div class="footer-contact-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l1.88-1.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg>
-          <span>+62 778 393 497</span>
+          <span><?= htmlspecialchars($kontak['telepon']['nilai'] ?? '') ?></span>
         </div>
         <div class="footer-contact-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <span>humasrutanbatam@gmail.com</span>
+          <span><?= htmlspecialchars($kontak['email']['nilai'] ?? '') ?></span>
         </div>
       </div>
     </div>

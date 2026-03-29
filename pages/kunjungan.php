@@ -1,10 +1,12 @@
 <?php
 require_once __DIR__ . '/../backend/config/config.php';
 require_once __DIR__ . '/../backend/config/database.php';
+require_once __DIR__ . '/../backend/includes/helpers.php';
 
 $db     = getDB();
 $jadwal = $db->query("SELECT * FROM kunjungan_jadwal ORDER BY urutan ASC")->fetchAll();
 $infoRaw = $db->query("SELECT kode, konten FROM kunjungan_info")->fetchAll(PDO::FETCH_KEY_PAIR);
+$kontak = getKontak();
 
 function infoLines($teks) {
     return array_filter(array_map('trim', explode("\n", $teks ?? '')));
@@ -311,28 +313,28 @@ include __DIR__ . '/../header.php';
         <h2 class="kunj-section-title">Informasi &amp; Konfirmasi</h2>
       </div>
       <div class="kontak-kunj-grid">
-        <a href="tel:+62778393497" class="kontak-kunj-card">
+        <a href="tel:<?= preg_replace('/[^0-9+]/', '', $kontak['telepon']['nilai'] ?? '') ?>" class="kontak-kunj-card">
           <div class="kontak-kunj-icon">📞</div>
-          <div class="kontak-kunj-label">Telepon</div>
-          <div class="kontak-kunj-val">+62 778 393 497</div>
+          <div class="kontak-kunj-label"><?= htmlspecialchars($kontak['telepon']['label'] ?? 'Telepon') ?></div>
+          <div class="kontak-kunj-val"><?= htmlspecialchars($kontak['telepon']['nilai'] ?? '') ?></div>
           <div class="kontak-kunj-hint">Senin – Jumat, 08.00–16.00</div>
         </a>
-        <a href="https://wa.me/6282216262626" target="_blank" class="kontak-kunj-card kontak-wa">
+        <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $kontak['whatsapp']['nilai'] ?? '') ?>" target="_blank" class="kontak-kunj-card kontak-wa">
           <div class="kontak-kunj-icon">💬</div>
-          <div class="kontak-kunj-label">WhatsApp</div>
-          <div class="kontak-kunj-val">0822-1626-2626</div>
+          <div class="kontak-kunj-label"><?= htmlspecialchars($kontak['whatsapp']['label'] ?? 'WhatsApp') ?></div>
+          <div class="kontak-kunj-val"><?= htmlspecialchars($kontak['whatsapp']['nilai'] ?? '') ?></div>
           <div class="kontak-kunj-hint">Pengaduan &amp; Konfirmasi</div>
         </a>
-        <a href="mailto:humasrutanbatam@gmail.com" class="kontak-kunj-card">
+        <a href="mailto:<?= htmlspecialchars($kontak['email']['nilai'] ?? '') ?>" class="kontak-kunj-card">
           <div class="kontak-kunj-icon">✉️</div>
-          <div class="kontak-kunj-label">Email</div>
-          <div class="kontak-kunj-val">humasrutanbatam@gmail.com</div>
+          <div class="kontak-kunj-label"><?= htmlspecialchars($kontak['email']['label'] ?? 'Email') ?></div>
+          <div class="kontak-kunj-val"><?= htmlspecialchars($kontak['email']['nilai'] ?? '') ?></div>
           <div class="kontak-kunj-hint">Balasan dalam 1×24 jam</div>
         </a>
-        <a href="https://maps.google.com/?q=Rutan+Kelas+IIA+Batam" target="_blank" class="kontak-kunj-card">
+        <a href="<?= htmlspecialchars($kontak['maps']['nilai'] ?? 'https://maps.google.com/?q=Rutan+Kelas+IIA+Batam') ?>" target="_blank" class="kontak-kunj-card">
           <div class="kontak-kunj-icon">📍</div>
           <div class="kontak-kunj-label">Lokasi</div>
-          <div class="kontak-kunj-val">Jl. Raya Trans Barelang</div>
+          <div class="kontak-kunj-val"><?= strip_tags($kontak['alamat']['nilai'] ?? 'Jl. Raya Trans Barelang') ?></div>
           <div class="kontak-kunj-hint">Buka di Google Maps →</div>
         </a>
       </div>

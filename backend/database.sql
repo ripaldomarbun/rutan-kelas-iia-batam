@@ -205,3 +205,25 @@ INSERT INTO `faq` (`pertanyaan`, `jawaban`, `kategori`, `urutan`, `aktif`) VALUE
 ('Apa saja persyaratan pakaian bagi pengunjung?', 'Pengunjung wajib berpakaian sopan dan rapi. Dilarang mengenakan:<br>- Pakaian ketat atau transparan<br>- Celana pendek<br>- Baju tanpa lengan<br>- Sandal atau sepatu rumah', 'kunjungan', 6, 1),
 ('Apakah bisa mengirim surat ke tahanan?', 'Ya, surat dapat dikirim melalui pos atau diantar langsung ke Rutan. Surat akan diperiksa terlebih dahulu oleh petugas sebelum diberikan kepada tahanan.', 'umum', 7, 1),
 ('Bagaimana cara mengetahui status tahanan?', 'Anda dapat menghubungi pihak Rutan secara langsung melalui telepon atau datang ke lokasi. Siapkan identitas dan hubungan keluarga dengan tahanan.', 'umum', 8, 1);
+
+-- ────────────────────────────────────────
+-- TABEL: kontak_info (informasi kontak)
+-- ────────────────────────────────────────
+CREATE TABLE `kontak_info` (
+  `id`          INT AUTO_INCREMENT PRIMARY KEY,
+  `kode`        VARCHAR(30) NOT NULL UNIQUE,  -- 'alamat', 'telepon', 'email', 'whatsapp', 'jam_operasional', 'maps'
+  `label`       VARCHAR(100) NOT NULL,        -- 'Alamat', 'Telepon', dll
+  `nilai`       TEXT,                         -- nilai/konten
+  `icon`        VARCHAR(50),                  -- emoji/icon
+  `urutan`      TINYINT DEFAULT 0,
+  `aktif`       TINYINT(1) DEFAULT 1,
+  `updated_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+INSERT INTO `kontak_info` (`kode`, `label`, `nilai`, `icon`, `urutan`, `aktif`) VALUES
+('alamat', 'Alamat', 'Jl. Raya Trans Barelang, Batam<br>Kepulauan Riau, Indonesia', '📍', 1, 1),
+('telepon', 'Telepon', '+62 778 393 497', '📞', 2, 1),
+('email', 'Email', 'humasrutanbatam@gmail.com', '✉️', 3, 1),
+('whatsapp', 'WhatsApp', '0822-1626-2626', '💬', 4, 1),
+('maps', 'Google Maps', 'https://maps.google.com/?q=Rutan+Kelas+IIA+Batam', '🗺️', 5, 1),
+('jam_operasional', 'Jam Operasional', 'Senin – Jumat: 08.00 – 16.00 WIB<br />Kunjungan: Sesuai jadwal yang berlaku', '🕐', 6, 1);
